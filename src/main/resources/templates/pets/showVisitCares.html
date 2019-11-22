@@ -1,0 +1,55 @@
+<html th:replace="~{fragments/layout :: layout (~{::body},'owners')}"
+      xmlns:th="https://www.thymeleaf.org">
+
+<body>
+
+<h2>
+
+    Cares
+</h2>
+
+<b>Pet</b>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Birth Date</th>
+        <th>Type</th>
+        <th>Owner</th>
+    </tr>
+    </thead>
+    <tr>
+        <td th:text="${pet.name}"/>
+        </td>
+        <td
+                th:text="${#temporals.format(pet.birthDate, 'yyyy-MM-dd')}"/>
+        </td>
+        <td th:text="${pet.type}"/>
+        </td>
+        <td
+                th:text="${pet.owner?.firstName + ' ' + pet.owner?.lastName}"/>
+        </td>
+    </tr>
+</table>
+
+
+<br/>
+<table class="table-condensed">
+
+    <thead>
+    <tr>
+        <th>Care Time</th>
+        <th>Description</th>
+        <th>Care</th>
+    </tr>
+    </thead>
+    <tr th:each="care : ${pet.cares}" }>
+        <td th:text="${#temporals.format(care.date, 'yyyy-MM-dd')}"></td>
+        <td th:text="${care?.description}"></td>
+    </tr>
+
+
+</table>
+
+</body>
+</html>

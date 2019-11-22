@@ -98,3 +98,12 @@ INSERT INTO visits
 VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits
 VALUES (4, 7, '2013-01-04', 'spayed');
+
+INSERT INTO cares
+VALUES (1, 7, '2013-01-01', 'surgery');
+INSERT INTO cares
+VALUES (2, 8, '2013-01-02', 'new treatment');
+INSERT INTO cares
+VALUES (3, 8, '2013-01-03', 'special food');
+INSERT INTO cares
+VALUES (4, 7, '2013-01-04', 'bandage');

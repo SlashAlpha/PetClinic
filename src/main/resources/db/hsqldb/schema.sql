@@ -2,6 +2,7 @@ DROP TABLE vet_specialties IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
 DROP TABLE visits IF EXISTS;
+DROP TABLE cares IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
@@ -69,6 +70,13 @@ CREATE TABLE visits
     id          INTEGER IDENTITY PRIMARY KEY,
     pet_id      INTEGER NOT NULL,
     visit_date  DATE,
+    description VARCHAR(255)
+);
+CREATE TABLE cares
+(
+    id          INTEGER IDENTITY PRIMARY KEY,
+    pet_id      INTEGER NOT NULL,
+    care_date   DATE,
     description VARCHAR(255)
 );
 ALTER TABLE visits

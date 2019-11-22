@@ -34,6 +34,7 @@ import javax.persistence.Transient;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.samples.petclinic.care.Care;
 import org.springframework.samples.petclinic.model.NamedEntity;
 import org.springframework.samples.petclinic.visit.Visit;
 
@@ -62,6 +63,8 @@ public class Pet extends NamedEntity {
 
     @Transient
     private Set<Visit> visits = new LinkedHashSet<>();
+    @Transient
+    private Set<Care> cares = new LinkedHashSet<>();
 
     public LocalDate getBirthDate() {
         return this.birthDate;
@@ -94,8 +97,19 @@ public class Pet extends NamedEntity {
         return this.visits;
     }
 
+    protected Set<Care> getCaresInternal() {
+        if (this.cares == null) {
+            this.cares = new HashSet<>();
+        }
+        return this.cares;
+    }
+
     protected void setVisitsInternal(Collection<Visit> visits) {
         this.visits = new LinkedHashSet<>(visits);
+    }
+
+    protected void setCaresInternal(Collection<Care> cares) {
+        this.cares = new LinkedHashSet<>(cares);
     }
 
     public List<Visit> getVisits() {
@@ -105,9 +119,21 @@ public class Pet extends NamedEntity {
         return Collections.unmodifiableList(sortedVisits);
     }
 
+    public List<Care> getCares() {
+        List<Care> sortedCare = new ArrayList<>(getCaresInternal());
+        PropertyComparator.sort(sortedCare, new MutableSortDefinition("date", false, false));
+        return Collections.unmodifiableList(sortedCare);
+    }
+
+
     public void addVisit(Visit visit) {
         getVisitsInternal().add(visit);
         visit.setPetId(this.getId());
+    }
+
+    public void addCare(Care care) {
+        getCaresInternal().add(care);
+        care.setPetId(this.getId());
     }
 
 }

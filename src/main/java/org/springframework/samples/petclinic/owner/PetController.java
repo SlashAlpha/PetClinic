@@ -30,6 +30,7 @@ import java.util.Collection;
  * @author Ken Krebs
  * @author Arjen Poutsma
  */
+
 @Controller
 @RequestMapping("/owners/{ownerId}")
 class PetController {
@@ -90,6 +91,7 @@ class PetController {
     public String initUpdateForm(@PathVariable("petId") int petId, ModelMap model) {
         Pet pet = this.pets.findById(petId);
         model.put("pet", pet);
+
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
